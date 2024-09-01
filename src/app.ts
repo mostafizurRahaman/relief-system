@@ -7,6 +7,7 @@ import configs from "./app/configs";
 import httpStatus from "http-status";
 import { allRoutes } from "./app/routes";
 import notFound from "./app/middlewares/notFound";
+import globalErrorHandler from "./app/middlewares/globalErrorHandler";
 
 //  Application *
 const app: Application = express();
@@ -30,18 +31,13 @@ app.get(
   })
 );
 
-
 //  All Routes (**)
-app.use('/api/v1', allRoutes)
-
-
-
+app.use("/api/v1", allRoutes);
 
 //  Not Found Route ::
-app.use(notFound)
-
+app.use(notFound);
 
 // Global Error handler **
+app.use(globalErrorHandler);
 
-
-export default app; 
+export default app;
