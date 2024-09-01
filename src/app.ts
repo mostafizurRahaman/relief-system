@@ -41,4 +41,7 @@ app.use('/api/v1', allRoutes)
 app.use(notFound)
 
 
-// Global Error handler ** 
+// Global Error handler **
+
+
+export default app; 
