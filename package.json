@@ -3,6 +3,17 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsnd --respawn src/server.ts",
+    "start": "node dist/server.js",
+    "migrate": "npx prisma migrate dev",
+    "postinstall": "npx prisma generate",
+    "db:push": "npx prisma db push",
+    "db:pull": "npx prisma db pull",
+    "db:format": "npx prisma format",
+    "db:debug": "npx prisma debug"
+  },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.7",
     "@types/cors": "^2.8.17",
