@@ -8,7 +8,7 @@ export interface IAdmin {
     fullName: string;
     phoneNumber: string;
     role?: UserRole;
-    profileImg?: string; 
+    profileImg: string; 
     email?: string;
     address: string; 
     isDeleted: boolean;
