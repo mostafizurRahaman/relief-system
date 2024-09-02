@@ -11,3 +11,8 @@ export interface IErrorReturnType {
   message: string;
   errDetails: IErrorDetails | Error;
 }
+
+export interface ITokenPayload {
+  phoneNumber: string;
+  role: string;
+}
