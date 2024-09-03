@@ -16,3 +16,10 @@ export interface ITokenPayload {
   phoneNumber: string;
   role: string;
 }
+
+export interface IPaginationOptions {
+  limit?: string;
+  page?: string;
+  sortBy?: string;
+  sortOrder?: string;
+}
