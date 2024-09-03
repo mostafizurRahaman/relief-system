@@ -1,4 +1,4 @@
-import { IPaginationOptions } from './../../interfaces/index';
+import { IPaginationOptions } from "./../../interfaces/index";
 // import queryString from "query-string";
 import httpStatus from "http-status";
 import catchAsync from "../../utils/catchAsync";
@@ -6,7 +6,7 @@ import pick from "../../utils/pick";
 import sendResponse from "../../utils/sendResponse";
 import { AdminFilterAbleFields } from "./Admin.constant";
 import { AdminServices } from "./Admin.services";
-import { paginationOptions } from '../../constants';
+import { paginationOptions } from "../../constants";
 
 const getAllAdmin = catchAsync(async (req, res) => {
   const params = pick(req.query, AdminFilterAbleFields);

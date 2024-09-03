@@ -23,3 +23,11 @@ export interface IPaginationOptions {
   sortBy?: string;
   sortOrder?: string;
 }
+
+export interface ICalculatePaginationReturnType {
+  limit: number;
+  page: number;
+  skip: number;
+  sortBy: string;
+  sortOrder: "desc" | "asc";
+}
