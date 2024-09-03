@@ -1,4 +1,4 @@
-import jwt, { Secret } from "jsonwebtoken";
+import jwt, { JwtPayload, Secret } from "jsonwebtoken";
 import { ITokenPayload } from "../interfaces";
 
 const createToken = (
@@ -12,7 +12,7 @@ const createToken = (
 };
 
 const verifyToken = (token: string, secret: Secret) => {
-  const decoded = jwt.verify(token, secret);
+  const decoded = jwt.verify(token, secret) as JwtPayload;
 
   return decoded;
 };
