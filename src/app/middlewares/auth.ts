@@ -1,4 +1,3 @@
-import { UserRole } from "@prisma/client";
 import catchAsync from "../utils/catchAsync";
 import AppError from "../errors/AppError";
 import httpStatus from "http-status";
@@ -7,6 +6,7 @@ import configs from "../configs";
 import { Secret } from "jsonwebtoken";
 import prisma from "../db";
 import { Request } from "express";
+import { UserRole } from "@prisma/client";
 
 const auth = (...roles: UserRole[]) => {
   return catchAsync(async (req: Request & { user?: any }, res, next) => {
