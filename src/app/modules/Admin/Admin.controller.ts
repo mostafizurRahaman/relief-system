@@ -1,5 +1,3 @@
-import { IPaginationOptions } from "./../../interfaces/index";
-// import queryString from "query-string";
 import httpStatus from "http-status";
 import catchAsync from "../../utils/catchAsync";
 import pick from "../../utils/pick";
@@ -25,3 +23,6 @@ const getAllAdmin = catchAsync(async (req, res) => {
 export const AdminController = {
   getAllAdmin,
 };
+
+
+

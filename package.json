@@ -12,7 +12,8 @@
     "db:push": "npx prisma db push",
     "db:pull": "npx prisma db pull",
     "db:format": "npx prisma format",
-    "db:debug": "npx prisma debug"
+    "db:debug": "npx prisma debug",
+    "db:studio": "npx prisma studio"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.7",

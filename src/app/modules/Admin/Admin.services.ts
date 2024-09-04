@@ -66,6 +66,10 @@ const getAllAdmin = async (params: any, options: IPaginationOptions) => {
   };
 };
 
+
+
+
+
 export const AdminServices = {
   getAllAdmin,
 };
