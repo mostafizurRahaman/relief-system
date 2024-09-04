@@ -21,4 +21,6 @@ const createHouse = async (payload: House) => {
   return house;
 };
 
-export default createHouse;
+export const HouseServices = {
+  createHouse,
+};
