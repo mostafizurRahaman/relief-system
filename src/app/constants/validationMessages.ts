@@ -5,7 +5,10 @@ type TKeyMessage =
   | "profileImg"
   | "address"
   | "password"
-  | "status";
+  | "status"
+  | "wordNo"
+  | "addBy"
+  | "name";
 
 interface IPaths {
   required: string;
@@ -46,4 +49,19 @@ export const validationMessage: Record<TKeyMessage, IPaths> = {
     required: "Status Is Required!!!",
     invalid: "ACTIVE OR DELETED OR BLOCK IS VALID. Choose One From Here !!!",
   },
+  name: {
+    required: "Name Is Required!!",
+    invalid: "Name Should Be String!!!",
+  },
+  wordNo: {
+    required: "WordNo Is  Required!!!",
+    invalid: "WordNo Should Be Number!!!",
+  },
+  addBy: {
+    required: "AddBy Is  Required!!!",
+    invalid: "AddBy Should Be String!!!",
+  },
 };
+
+
+

@@ -43,6 +43,8 @@ model House {
   name String @db.VarChar()
   addBy String @db.VarChar()
   admin Admin @relation(fields: [addBy] , references: [phoneNumber])
+  createdAt DateTime @default(now()) 
+  updatedAt DateTime @updatedAt
 }
 
 //  Enums ** 
