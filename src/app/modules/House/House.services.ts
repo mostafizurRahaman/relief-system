@@ -2,6 +2,7 @@ import { House, Prisma } from "@prisma/client";
 import prisma from "../../db";
 import { IPaginationOptions } from "../../interfaces";
 import { paginationHelpers } from "../../utils/paginationHelpers";
+import { HouseSearchAbleFields } from "./House.constant";
 
 const createHouse = async (payload: House) => {
   //  Check Is This User Exists **
@@ -27,7 +28,19 @@ const getAllHouses = async (params: any, options: IPaginationOptions) => {
   const { searchTerm, ...filters } = params;
   const { limit, page, skip, sortBy, sortOrder } =
     paginationHelpers.calculatePaginate(options);
+
   const andConditions: Prisma.HouseWhereInput[] = [];
+
+  if (searchTerm) {
+    andConditions.push({
+      OR: HouseSearchAbleFields.map((field) => ({
+        [field]: {
+          contains: searchTerm,
+          mode: "insensitive",
+        },
+      })),
+    });
+  }
 
   const whereConditions: Prisma.HouseWhereInput = {
     AND: andConditions,
