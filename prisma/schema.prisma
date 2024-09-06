@@ -47,6 +47,20 @@ model House {
   updatedAt DateTime @updatedAt
 }
 
+
+model Relief {
+  id String @id @default(uuid())
+  relifName String @db.VarChar()
+  providerName String @db.VarChar()
+  startDate DateTime 
+  endDate DateTime
+  quantity_of_relief Int
+  number_of_recipients Int
+  status ReliefStatus
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 //  Enums ** 
 enum UserRole  {
    ADMIN
@@ -59,4 +73,9 @@ enum UserStatus {
   ACTIVE
   BLOCKED
   DELETED
+}
+
+enum ReliefStatus { 
+  RUNNING
+  CLOSED
 }
