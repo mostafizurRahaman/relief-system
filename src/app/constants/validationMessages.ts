@@ -8,7 +8,8 @@ type TKeyMessage =
   | "status"
   | "wordNo"
   | "addBy"
-  | "name";
+  | "name"
+  | "id";
 
 interface IPaths {
   required: string;
@@ -61,7 +62,8 @@ export const validationMessage: Record<TKeyMessage, IPaths> = {
     required: "AddBy Is  Required!!!",
     invalid: "AddBy Should Be String!!!",
   },
+  id: {
+    required: "ID Is Required!!!",
+    invalid: "ID Is Required!!!",
+  },
 };
-
-
-

@@ -20,4 +20,11 @@ router.get(
   HouseController.getAllHouses
 );
 
+router.put(
+  "/:id",
+  auth(UserRole.ADMIN, UserRole.SUPER_ADMIN),
+  validateRequest(HouseValidations.updateHouseValidationSchema),
+  HouseController.updateHouse
+);
+
 export const houseRoutes = router;

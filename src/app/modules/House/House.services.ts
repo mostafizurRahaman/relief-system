@@ -5,7 +5,6 @@ import { paginationHelpers } from "../../utils/paginationHelpers";
 import { HouseSearchAbleFields } from "./House.constant";
 
 const createHouse = async (payload: House) => {
-  //  Check Is This User Exists **
   await prisma.admin.findUniqueOrThrow({
     where: {
       phoneNumber: payload?.addBy,
@@ -72,7 +71,25 @@ const getAllHouses = async (params: any, options: IPaginationOptions) => {
   };
 };
 
+const updateHouse = async (id: string, payload: Partial<House>) => {
+  await prisma.house.findUniqueOrThrow({
+    where: {
+      id,
+    },
+  });
+
+  const result = await prisma.house.update({
+    where: {
+      id,
+    },
+    data: payload,
+  });
+
+  return result;
+};
+
 export const HouseServices = {
   createHouse,
   getAllHouses,
+  updateHouse,
 };

@@ -5,7 +5,7 @@ import { jwtHelpers } from "../utils/jwtHelpers";
 import configs from "../configs";
 import { Secret } from "jsonwebtoken";
 import prisma from "../db";
-import { Request } from "express";
+import {  Request } from "express";
 import { UserRole } from "@prisma/client";
 
 const auth = (...roles: UserRole[]) => {
