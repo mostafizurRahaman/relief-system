@@ -50,8 +50,21 @@ const updateHouse = catchAsync(async (req, res, next) => {
   });
 });
 
+const deleteHouse = catchAsync(async (req, res, next) => {
+  const { id } = req.params;
+  const result = await HouseServices.deleteHouse(id);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: `House Deleted Successfully!!!`,
+    data: result,
+  });
+});
+
 export const HouseController = {
   CreateHouse,
   getAllHouses,
   updateHouse,
+  deleteHouse,
 };

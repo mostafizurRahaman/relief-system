@@ -47,7 +47,17 @@ const updateHouseValidationSchema = z.object({
   }),
 });
 
+const deleteHouseValidationsSchema = z.object({
+  params: z.object({
+    id: z.string({
+      required_error: id.required,
+      invalid_type_error: id.invalid,
+    }),
+  }),
+});
+
 export const HouseValidations = {
   createHouseValidation,
   updateHouseValidationSchema,
+  deleteHouseValidationsSchema,
 };

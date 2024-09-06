@@ -27,4 +27,11 @@ router.put(
   HouseController.updateHouse
 );
 
+router.delete(
+  "/:id",
+  auth(UserRole.ADMIN, UserRole.SUPER_ADMIN),
+  validateRequest(HouseValidations.deleteHouseValidationsSchema),
+  HouseController.deleteHouse
+);
+
 export const houseRoutes = router;

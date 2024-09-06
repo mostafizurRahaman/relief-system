@@ -88,8 +88,25 @@ const updateHouse = async (id: string, payload: Partial<House>) => {
   return result;
 };
 
+const deleteHouse = async (id: string) => {
+  await prisma.house.findUniqueOrThrow({
+    where: {
+      id,
+    },
+  });
+
+  const result = await prisma.house.delete({
+    where: {
+      id,
+    },
+  });
+
+  return result;
+};
+
 export const HouseServices = {
   createHouse,
   getAllHouses,
   updateHouse,
+  deleteHouse,
 };
