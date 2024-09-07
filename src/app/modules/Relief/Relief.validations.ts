@@ -56,10 +56,12 @@ const createReliefValidationSchema = z.object({
 
 const updateReliefValidationSchema = z.object({
   params: z.object({
-    id: z.string({
-      required_error: id.required,
-      invalid_type_error: id.invalid,
-    }),
+    id: z
+      .string({
+        required_error: id.required,
+        invalid_type_error: id.invalid,
+      })
+      .uuid("INVALID ID!!"),
   }),
   body: z.object({
     reliefName: z
@@ -79,10 +81,12 @@ const updateReliefValidationSchema = z.object({
 
 const closeReliefValidationSchema = z.object({
   params: z.object({
-    id: z.string({
-      required_error: id.required,
-      invalid_type_error: id.invalid,
-    }),
+    id: z
+      .string({
+        required_error: id.required,
+        invalid_type_error: id.invalid,
+      })
+      .uuid("INVALID ID!!"),
   }),
 });
 
