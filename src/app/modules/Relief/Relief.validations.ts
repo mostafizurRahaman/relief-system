@@ -8,6 +8,7 @@ const {
   endDate,
   quantity_of_relief,
   number_of_recipients,
+  id,
 } = validationMessage;
 
 const createReliefValidationSchema = z.object({
@@ -53,6 +54,30 @@ const createReliefValidationSchema = z.object({
     ),
 });
 
+const updateReliefValidationSchema = z.object({
+  params: z.object({
+    id: z.string({
+      required_error: id.required,
+      invalid_type_error: id.invalid,
+    }),
+  }),
+  body: z.object({
+    reliefName: z
+      .string({
+        required_error: reliefName.required,
+        invalid_type_error: reliefName.invalid,
+      })
+      .optional(),
+    providerName: z
+      .string({
+        required_error: providerName.required,
+        invalid_type_error: reliefName.invalid,
+      })
+      .optional(),
+  }),
+});
+
 export const ReliefValidations = {
   createReliefValidationSchema,
+  updateReliefValidationSchema,
 };

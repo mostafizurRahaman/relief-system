@@ -1,7 +1,10 @@
+import { IPaginationOptions } from "./../../interfaces/index";
 import { reliefServices } from "./Relief.services";
 import catchAsync from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
 import httpStatus from "http-status";
+import pick from "../../utils/pick";
+import { paginationOptions } from "../../constants";
 
 const createRelief = catchAsync(async (req, res) => {
   const result = await reliefServices.createRelief(req.body);
@@ -14,6 +17,34 @@ const createRelief = catchAsync(async (req, res) => {
   });
 });
 
+const getAllRelief = catchAsync(async (req, res) => {
+  const params = pick(req.query, []);
+  const options = pick(req.query, paginationOptions);
+
+  const result = await reliefServices.getAllRelief(params, options);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "All Relief Retrieved Successfully!!!",
+    data: result,
+  });
+});
+
+const updateRelief = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await reliefServices.updateRelief(id, req.body);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Relief Is Updated Successfully!!!",
+    data: result,
+  });
+});
+
 export const reliefController = {
   createRelief,
+  updateRelief,
+  getAllRelief,
 };

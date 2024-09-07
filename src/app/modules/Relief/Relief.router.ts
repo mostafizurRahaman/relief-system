@@ -14,4 +14,17 @@ router.post(
   reliefController.createRelief
 );
 
+router.get(
+  "/",
+  auth(UserRole.ADMIN, UserRole.SUPER_ADMIN),
+  reliefController.getAllRelief
+);
+
+router.put(
+  "/:id",
+  auth(UserRole.ADMIN, UserRole.SUPER_ADMIN),
+  validateRequest(ReliefValidations.updateReliefValidationSchema),
+  reliefController.updateRelief
+);
+
 export const reliefRoutes = router;
