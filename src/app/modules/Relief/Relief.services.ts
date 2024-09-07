@@ -1,4 +1,4 @@
-import { Prisma, Relief } from "@prisma/client";
+import { Prisma, Relief, ReliefStatus } from "@prisma/client";
 import prisma from "../../db";
 import AppError from "../../errors/AppError";
 import httpStatus from "http-status";
@@ -129,8 +129,31 @@ const updateRelief = async (id: string, payload: Partial<Relief>) => {
   return result;
 };
 
+const closeReliefStatus = async (id: string) => {
+  //  Check Is Relief Exists Or Not :
+  await prisma.relief.findUniqueOrThrow({
+    where: {
+      id,
+      status: "RUNNING",
+    },
+  });
+
+  const result = await prisma.relief.update({
+    where: {
+      id,
+      status: "RUNNING",
+    },
+    data: {
+      status: "CLOSED",
+    },
+  });
+
+  return result;
+};
+
 export const reliefServices = {
   createRelief,
   updateRelief,
   getAllRelief,
+  closeReliefStatus,
 };

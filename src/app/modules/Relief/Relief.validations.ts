@@ -77,7 +77,17 @@ const updateReliefValidationSchema = z.object({
   }),
 });
 
+const closeReliefValidationSchema = z.object({
+  params: z.object({
+    id: z.string({
+      required_error: id.required,
+      invalid_type_error: id.invalid,
+    }),
+  }),
+});
+
 export const ReliefValidations = {
   createReliefValidationSchema,
   updateReliefValidationSchema,
+  closeReliefValidationSchema,
 };

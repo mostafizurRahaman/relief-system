@@ -44,8 +44,21 @@ const updateRelief = catchAsync(async (req, res) => {
   });
 });
 
+const closeReliefStatus = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await reliefServices.closeReliefStatus(id);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Relief Is Updated Successfully!!!",
+    data: result,
+  });
+});
+
 export const reliefController = {
   createRelief,
   updateRelief,
   getAllRelief,
+  closeReliefStatus,
 };

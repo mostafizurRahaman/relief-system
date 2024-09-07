@@ -27,4 +27,11 @@ router.put(
   reliefController.updateRelief
 );
 
+router.put(
+  "/:id/status",
+  auth(UserRole.ADMIN, UserRole.SUPER_ADMIN),
+  validateRequest(ReliefValidations.closeReliefValidationSchema),
+  reliefController.closeReliefStatus
+);
+
 export const reliefRoutes = router;
