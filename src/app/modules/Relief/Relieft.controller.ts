@@ -5,6 +5,7 @@ import sendResponse from "../../utils/sendResponse";
 import httpStatus from "http-status";
 import pick from "../../utils/pick";
 import { paginationOptions } from "../../constants";
+import { reliefFilterAbleFields } from "./Relief.constant";
 
 const createRelief = catchAsync(async (req, res) => {
   const result = await reliefServices.createRelief(req.body);
@@ -18,7 +19,7 @@ const createRelief = catchAsync(async (req, res) => {
 });
 
 const getAllRelief = catchAsync(async (req, res) => {
-  const params = pick(req.query, []);
+  const params = pick(req.query, reliefFilterAbleFields);
   const options = pick(req.query, paginationOptions);
 
   const result = await reliefServices.getAllRelief(params, options);
