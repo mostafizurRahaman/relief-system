@@ -9,13 +9,20 @@ type TKeyMessage =
   | "wordNo"
   | "addBy"
   | "name"
-  | "id";
+  | "id"
+  | "reliefName"
+  | "providerName"
+  | "startDate"
+  | "endDate"
+  | "quantity_of_relief"
+  | "number_of_recipients"
 
 interface IPaths {
   required: string;
   invalid: string;
   min?: string;
   max?: string;
+  isStartLessThenEndDate?: string;
 }
 
 export const validationMessage: Record<TKeyMessage, IPaths> = {
@@ -65,5 +72,30 @@ export const validationMessage: Record<TKeyMessage, IPaths> = {
   id: {
     required: "ID Is Required!!!",
     invalid: "ID Is Required!!!",
+  },
+  reliefName: {
+    required: "Relief Name Is Required!!!",
+    invalid: "Relief Name Should Be Invalid!!!",
+  },
+  providerName: {
+    required: "Provider Name Is Required!!!",
+    invalid: "Provider Name Should Be Invalid!!!",
+  },
+  startDate: {
+    required: "startDate Is Required!!!",
+    invalid: "startDate Should Date",
+    isStartLessThenEndDate: "Start Date Should Be Less Then End Date!!!",
+  },
+  endDate: {
+    required: "endDate Is Required!!!",
+    invalid: "endDate Is Required!!!",
+  },
+  quantity_of_relief: {
+    required: "Quantity Of Relief Should !!!",
+    invalid: "Quantity Of ",
+  },
+  number_of_recipients: {
+    required: "Quantity Of Relief Is Required!!!",
+    invalid: "Quantity Of Relief Should ",
   },
 };
