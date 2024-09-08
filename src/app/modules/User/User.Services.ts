@@ -1,4 +1,4 @@
-import { Beneficiary } from "@prisma/client";
+import { Beneficiary, UserStatus } from "@prisma/client";
 //  Create Admin Route
 
 import httpStatus from "http-status";
@@ -105,14 +105,10 @@ const createBeneficiary = async (
   }
 
   //  Check Admin Is Exists *
-  const isAdminExists = await prisma.admin.findUnique({
+  const isAdminExists = await prisma.user.findUnique({
     where: {
       phoneNumber: admin.phoneNumber,
-      isDeleted: false,
-      user: {
-        phoneNumber: admin.phoneNumber,
-        status: "ACTIVE",
-      },
+      status: UserStatus.ACTIVE,
     },
   });
 
@@ -152,4 +148,5 @@ const createBeneficiary = async (
 
 export const UserServices = {
   CreateAdmin,
+  createBeneficiary,
 };
