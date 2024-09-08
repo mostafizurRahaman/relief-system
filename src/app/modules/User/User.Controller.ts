@@ -14,6 +14,9 @@ const createAdmin = catchAsync(async (req, res) => {
   });
 });
 
+
+
+
 export const UserController = {
   createAdmin,
 };

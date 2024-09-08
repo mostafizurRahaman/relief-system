@@ -1,8 +1,17 @@
 import { z } from "zod";
 import { validationMessage } from "../../constants/validationMessages";
 
-const { email, fullName, address, password, phoneNumber, profileImg, status } =
-  validationMessage;
+const {
+  email,
+  fullName,
+  address,
+  password,
+  phoneNumber,
+  profileImg,
+  fatherName,
+  husbandName,
+  nid,
+} = validationMessage;
 
 const createAdminValidation = z.object({
   body: z.object({
@@ -41,6 +50,98 @@ const createAdminValidation = z.object({
   }),
 });
 
+const createBeneficiaryValidationSchema = z.object({
+  body: z.object({
+    password: z.string({
+      required_error: password.required,
+      invalid_type_error: password.invalid,
+    }),
+    beneficiary: z
+      .object({
+        fullName: z.string({
+          required_error: fullName.required,
+          invalid_type_error: fullName.invalid,
+        }),
+        profileImg: z
+          .string({
+            invalid_type_error: profileImg.invalid,
+          })
+          .url("Profile Image Should Be URL!!!")
+          .optional(),
+        email: z
+          .string({
+            required_error: email.required,
+            invalid_type_error: email.invalid,
+          })
+          .email("Invalid Email"),
+        phoneNumber: z.string({
+          required_error: phoneNumber.required,
+          invalid_type_error: phoneNumber.invalid,
+        }),
+        nid: z.string({
+          required_error: nid.required,
+          invalid_type_error: nid.invalid,
+        }),
+        fatherName: z
+          .string({
+            invalid_type_error: fatherName.invalid,
+          })
+          .optional(),
+        husbandName: z.string({
+          invalid_type_error: husbandName.invalid,
+        }),
+        createdBy: z
+          .string({
+            invalid_type_error: "Created By Should Be String!!!",
+            required_error: "CreatedBy Is Required!!!",
+          })
+          .uuid("Invalid ID"),
+        house: z
+          .string({
+            invalid_type_error: "House Should Be String!!!",
+            required_error: "House Is Required!!!",
+          })
+          .uuid("Invalid ID"),
+        isDeleted: z
+          .boolean({
+            invalid_type_error: "isDeleted Should Be Boolean",
+          })
+          .default(false)
+          .optional(),
+      })
+      .refine(
+        (data) => {
+          if (!data.fatherName && !data.husbandName) {
+            return false;
+          }
+          return data?.fatherName || data?.husbandName;
+        },
+        {
+          message: "Father OR Husband Name  Is Required!!",
+          path: ["body", "beneficiary", "fatherName"],
+        }
+      )
+      .refine(
+        (data) => {
+          if (!data.nid) {
+            return false;
+          }
+
+          if (data?.nid?.length === 10 || data?.nid.length === 14) {
+            return true;
+          }
+
+          return false;
+        },
+        {
+          message: `Provide A valid Nid Number`,
+          path: ["body", "beneficiary", "nid"],
+        }
+      ),
+  }),
+});
+
 export const userValidations = {
   createAdminValidation,
+  createBeneficiaryValidationSchema,
 };

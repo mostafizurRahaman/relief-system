@@ -16,6 +16,9 @@ type TKeyMessage =
   | "endDate"
   | "quantity_of_relief"
   | "number_of_recipients"
+  | "fatherName"
+  | "husbandName"
+  | "nid";
 
 interface IPaths {
   required: string;
@@ -97,5 +100,17 @@ export const validationMessage: Record<TKeyMessage, IPaths> = {
   number_of_recipients: {
     required: "Quantity Of Relief Is Required!!!",
     invalid: "Quantity Of Relief Should ",
+  },
+  fatherName: {
+    required: "Father Name Is Required!!!",
+    invalid: "Father Name Should Be String!!!",
+  },
+  husbandName: {
+    required: "Husband Name Is Required!!!",
+    invalid: "Husband Name Should Be String!!!",
+  },
+  nid: {
+    required: "NID Number Is Required",
+    invalid: "NID Number Should Be String!!!",
   },
 };

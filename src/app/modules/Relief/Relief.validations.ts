@@ -1,15 +1,8 @@
 import { z } from "zod";
 import { validationMessage } from "../../constants/validationMessages";
 
-const {
-  reliefName,
-  providerName,
-  startDate,
-  endDate,
-  quantity_of_relief,
-  number_of_recipients,
-  id,
-} = validationMessage;
+const { reliefName, providerName, startDate, endDate, quantity_of_relief, id } =
+  validationMessage;
 
 const createReliefValidationSchema = z.object({
   body: z

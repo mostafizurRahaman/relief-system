@@ -31,3 +31,8 @@ export interface ICalculatePaginationReturnType {
   sortBy: string;
   sortOrder: "desc" | "asc";
 }
+
+export interface IUserInfo {
+  phoneNumber?: string;
+  
+}

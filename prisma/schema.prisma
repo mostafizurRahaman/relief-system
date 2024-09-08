@@ -33,6 +33,7 @@ model Admin {
   createdAt DateTime @default(now())
   user  User @relation(fields: [phoneNumber], references: [phoneNumber])
   house House[]
+  benificiary Beneficiary[]
   updatedAt DateTime @updatedAt
   @@map("admins")
 }
@@ -45,6 +46,8 @@ model House {
   admin Admin @relation(fields: [addBy] , references: [phoneNumber])
   createdAt DateTime @default(now()) 
   updatedAt DateTime @updatedAt
+
+  benificiary Beneficiary[]
 }
 
 
@@ -59,6 +62,26 @@ model Relief {
   status ReliefStatus @default(RUNNING)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+
+
+model Beneficiary{
+   id String @id @default(uuid())
+   fullName String 
+   profileImg String?
+   email String @db.VarChar()
+   phoneNumber String @unique @db.VarChar()
+   nid String @unique @db.VarChar(14)
+   fatherName String?
+   husbandName String?
+   createdBy String
+   admin Admin @relation(fields: [createdBy], references: [phoneNumber])
+   house_id String @unique
+   house House  @relation(fields: [house_id], references: [id])
+   isDeleted Boolean @default(false)
+   createdAt DateTime @default(now())
+   updatedAt DateTime @updatedAt
 }
 
 //  Enums ** 
