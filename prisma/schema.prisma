@@ -18,6 +18,7 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   admin Admin?
+  beneficiary Beneficiary[]
   @@map("users")
 }
 
@@ -33,7 +34,6 @@ model Admin {
   createdAt DateTime @default(now())
   user  User @relation(fields: [phoneNumber], references: [phoneNumber])
   house House[]
-  benificiary Beneficiary[]
   updatedAt DateTime @updatedAt
   @@map("admins")
 }
@@ -76,7 +76,7 @@ model Beneficiary{
    fatherName String?
    husbandName String?
    createdBy String
-   admin Admin @relation(fields: [createdBy], references: [phoneNumber])
+   admin User @relation(fields: [createdBy], references: [phoneNumber])
    house_id String @unique
    house House  @relation(fields: [house_id], references: [id])
    isDeleted Boolean @default(false)

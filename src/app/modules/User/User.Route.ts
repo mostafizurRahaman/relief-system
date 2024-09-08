@@ -18,6 +18,6 @@ router.post(
   "/create-beneficiary",
   auth(UserRole.ADMIN, UserRole.SUPER_ADMIN),
   validateRequest(userValidations.createBeneficiaryValidationSchema),
-  UserController.createAdmin
+  UserController.createBeneficiary
 );
 export const userRoutes = router;

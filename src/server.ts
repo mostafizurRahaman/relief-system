@@ -1,12 +1,13 @@
 import { Server } from "http";
 import app from "./app";
 import configs from "./app/configs";
-
+import seedSuperAdmin from "./app/db/seedSuperAdmin";
 
 let server: Server;
 
 const main = async () => {
   try {
+    seedSuperAdmin();
     server = app.listen(configs.port, () => {
       console.log(`🟢🔵🟢 Server Is Running On Port ${configs.port} 🟢🔵🟢`);
     });

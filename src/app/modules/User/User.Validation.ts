@@ -90,13 +90,7 @@ const createBeneficiaryValidationSchema = z.object({
         husbandName: z.string({
           invalid_type_error: husbandName.invalid,
         }),
-        createdBy: z
-          .string({
-            invalid_type_error: "Created By Should Be String!!!",
-            required_error: "CreatedBy Is Required!!!",
-          })
-          .uuid("Invalid ID"),
-        house: z
+        house_id: z
           .string({
             invalid_type_error: "House Should Be String!!!",
             required_error: "House Is Required!!!",

@@ -1,4 +1,3 @@
-import { Beneficiary, UserStatus } from "@prisma/client";
 //  Create Admin Route
 
 import httpStatus from "http-status";
@@ -7,7 +6,7 @@ import AppError from "../../errors/AppError";
 import { IAdmin } from "./User.Interface";
 import { passwordHelpers } from "../../utils/passwordHelpers";
 import configs from "../../configs";
-import { Beneficiary, UserRole } from "@prisma/client";
+import { Beneficiary, UserRole, UserStatus } from "@prisma/client";
 import { ITokenPayload } from "../../interfaces";
 
 const CreateAdmin = async (payload: IAdmin) => {
@@ -116,6 +115,13 @@ const createBeneficiary = async (
     throw new AppError(httpStatus.UNAUTHORIZED, "Admin Doesn't Exists!!!");
   }
 
+  //  Check is House ID Exists **
+  await prisma.house.findUniqueOrThrow({
+    where: {
+      id: beneficiary.house_id,
+    },
+  });
+
   //  Hash Password **
   const hashPassword = await passwordHelpers.hashPassword(
     password,
@@ -132,6 +138,8 @@ const createBeneficiary = async (
     const user = await tx.user.create({
       data: userPayload,
     });
+
+    
 
     const beneficiaryData = await tx.beneficiary.create({
       data: {

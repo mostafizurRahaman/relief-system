@@ -5,6 +5,10 @@ import { AdminController } from "./Admin.controller";
 
 const router = express.Router();
 
-router.get("/get-all", auth(UserRole.ADMIN), AdminController.getAllAdmin);
+router.get(
+  "/get-all",
+  auth(UserRole.ADMIN, UserRole.SUPER_ADMIN),
+  AdminController.getAllAdmin
+);
 
 export const adminRoutes = router;
